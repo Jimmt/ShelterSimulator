@@ -1,54 +1,84 @@
-{
-     "questions": 
-     [ {
-    
-        "question_1" :
-            {
-            "Prerequisites": [],
-            "Range":[1,5], 
-            "Question": "How many beds do you want to have?",
-            "Visited": false,
-            "Answers": 
-                [
-                {"answer1": "10", "cost": 10},
-                {"answer2": "20", "cost": 20},
-                {"answer3": "30", "cost": 30},
-                {"answer4": "40", "cost": 40}
-                ]
-
+[
+  {
+    "question_1": {
+      "Prerequisites": [],
+      "Range": [
+        1,
+        5
+      ],
+      "Question": "Buy food for people in th shelter",
+      "Visited": false,
+      "Answers": [
+        {
+          "answer1": "yes",
+          "cost": 50
         },
-        
-        "question_2" : 
-            {
-            "Prerequisites": ["question_1" ],
-            "Range":[5,20], 
-            "Question": "question",
-            "Visited": false,
-            "Answers": 
-                [
-                {"answer1": "answer", "cost": 30},
-                {"answer2": "answer", "cost": 25},
-                {"answer3": "answer", "cost": 10},
-                {"answer4": "answer", "cost": 5}
-                ]
-        }, 
-
-        "question_3" : 
-            {
-            "Prerequisites": ["question_1", "question_2"],
-            "Range":[20,100], 
-            "Question": "question",
-            "Visited": false,
-            "Answers": 
-                [
-                {"answer1": "answer", "cost": 35},
-                {"answer2": "answer", "cost": 20},
-                {"answer3": "answer", "cost": 5},
-                {"answer4": "answer", "cost": 15}
-                ]
-            
+        {
+          "answer2": "no",
+          "cost": 0
         }
-        
-     }]
-}
+      ]
+    },
+    "question_2": {
+      "Prerequisites": [
+        "question_1"
+      ],
+      "Range": [
+        5,
+        20
+      ],
+      "Question": "question",
+      "Visited": false,
+      "Answers": [
+        {
+          "answer1": "answer",
+          "cost": 30
+        },
+        {
+          "answer2": "answer",
+          "cost": 25
+        },
+        {
+          "answer3": "answer",
+          "cost": 10
+        },
+        {
+          "answer4": "answer",
+          "cost": 5
+        }
+      ]
+    },
+    "question_3": {
+      "Prerequisites": [
+        "question_1",
+        "question_2"
+      ],
+      "Range": [
+        20,
+        100
+      ],
+      "Question": "question",
+      "Visited": false,
+      "Answers": [
+        {
+          "answer1": "answer",
+          "cost": 35
+        },
+        {
+          "answer2": "answer",
+          "cost": 20
+        },
+        {
+          "answer3": "answer",
+          "cost": 5
+        },
+        {
+          "answer4": "answer",
+          "cost": 15
+        }
+      ]
+    }
+  }
+]
+
 
