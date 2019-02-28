@@ -1,20 +1,23 @@
 package com.sheltersimulator.sheltersimulator;
 
+import android.app.Application;
+
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
 
 
-public class BuildDecisions{
+public class BuildDecisions {
 
     private int[] range = new int[2];
     private ArrayList<Decision> preReq;
     private ArrayList<Answer> answers;
 
-    public BuildDecisions(){
-        range = new int[]{1,5};
-        preReq = new ArrayList<Decision>();
-        answers = new ArrayList<Answer>(Arrays.asList(new Answer("buy more food", 50), new Answer("do nothing", 0)));
+    public BuildDecisions(int[] range, ArrayList<Decision> preReq, ArrayList<Answer> answers){
+        range = this.range;
+        preReq = this.preReq;
+//        answers = new ArrayList<Answer>(Arrays.asList(new Answer("buy more food", 50), new Answer("do nothing", 0)));
+        answers = this.answers;
         Decision test = new Decision("You don't have any food, would you like to go buy some?", preReq, range, false, answers);
     }
 }
