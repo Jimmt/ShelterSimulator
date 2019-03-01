@@ -1,7 +1,7 @@
 package com.sheltersimulator.sheltersimulator;
 
-import android.app.Application;
 import android.content.Context;
+import android.util.Log;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -13,54 +13,51 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 
-public class BuildDecisions extends Application {
-    Context ctx;
-    private ArrayList<Decision> allDecisions;
+public class BuildDecisions {
+    private static ArrayList<Decision> allDecisions;
+    private static final String TAG = BuildDecisions.class.getName();
 
-    @Override
-    public void onCreate() {
-        super.onCreate();
-        ctx = this;
-
-        JSONArray obj = loadJSONFromAsset(ctx);
-        if(obj!= null){
-            allDecisions = readJsonArray(obj);
+    public static ArrayList<Decision> getAllDecisions(Context ctx) throws JSONException {
+        if(allDecisions == null){
+            JSONArray obj = loadJSONFromAsset(ctx);
+            if(obj!= null){
+                allDecisions = readJsonArray(obj);
+                return allDecisions;
+            }
+            throw new JSONException("Failed to load decisions from JSON");
+        } else {
+            return allDecisions;
         }
-
     }
 
-    public ArrayList<Decision> getAllDecisions() {
-        return allDecisions;
-    }
-
-    private ArrayList<Decision> readJsonArray(JSONArray obj) {
-        ArrayList<Decision> allDecisions = null;
+    private static ArrayList<Decision> readJsonArray(JSONArray obj) {
+        ArrayList<Decision> allDecisions = new ArrayList<>();
         try {
             for (int i = 0; i < obj.length(); i++) {
                 JSONObject currDecision = obj.getJSONObject(i);
 
-                JSONArray rangeJSON = currDecision.getJSONArray("Range");
+                JSONArray rangeJSON = currDecision.getJSONArray("range");
                 int[] range = new int[]{rangeJSON.getInt(0), rangeJSON.getInt(0)};
 
-                JSONArray answersJSON = currDecision.getJSONArray("Answers");
+                JSONArray answersJSON = currDecision.getJSONArray("answers");
                 ArrayList<Answer> answers = new ArrayList<Answer>();
                 for (int j = 0; j < answersJSON.length(); j++) {
                     JSONObject currAnswer = answersJSON.getJSONObject(i);
                     Answer ans = new Answer(currAnswer.getString("option"), currAnswer.getInt("cost"));
                     answers.add(ans);
                 }
-                Decision decision = new Decision(currDecision.getString("Decision"), currDecision.getString("Tyoe"),
+                Decision decision = new Decision(currDecision.getString("decision"), currDecision.getString("type"),
                         range, currDecision.getBoolean("visited"), answers);
                 allDecisions.add(decision);
             }
         } catch (JSONException je) {
-            je.printStackTrace();
+            Log.e(TAG, je.getMessage());
             return null;
         }
         return allDecisions;
     }
 
-    private JSONArray loadJSONFromAsset(Context context) {
+    private static JSONArray loadJSONFromAsset(Context context) {
         JSONArray obj;
         try {
             InputStream is = context.getAssets().open("data.json");
