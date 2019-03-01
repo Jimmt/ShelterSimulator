@@ -64,8 +64,8 @@ class Answer {
     private int cost;
 
     public Answer(String answerText, int cost){
-        answerText = this.answerText;
-        cost = this.cost;
+        this.answerText = answerText;
+        this.cost = cost;
     }
     public String getAnswerText(){
         return answerText;
