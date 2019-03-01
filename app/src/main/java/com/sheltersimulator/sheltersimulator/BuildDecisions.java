@@ -9,6 +9,7 @@ import org.json.JSONObject;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.Serializable;
 import java.util.ArrayList;
 
 
@@ -22,7 +23,9 @@ public class BuildDecisions extends Application {
         ctx = this;
 
         JSONArray obj = loadJSONFromAsset(ctx);
-        allDecisions = readJsonArray(obj);
+        if(obj!= null){
+            allDecisions = readJsonArray(obj);
+        }
 
     }
 
@@ -79,7 +82,7 @@ public class BuildDecisions extends Application {
 }
 
 
-class Decision {
+class Decision implements Serializable {
 
     private String question;
     private String type;
@@ -87,7 +90,7 @@ class Decision {
     private boolean visited;
     private ArrayList<Answer> answers;
 
-    public Decision(String question, String type, int[] range, boolean visited, ArrayList<Answer> answers) {
+    Decision(String question, String type, int[] range, boolean visited, ArrayList<Answer> answers) {
         this.question = question;
         this.type = type;
         this.range = range;
@@ -122,7 +125,7 @@ class Answer {
     private String answerText;
     private int cost;
 
-    public Answer(String answerText, int cost) {
+    Answer(String answerText, int cost){
         this.answerText = answerText;
         this.cost = cost;
     }
