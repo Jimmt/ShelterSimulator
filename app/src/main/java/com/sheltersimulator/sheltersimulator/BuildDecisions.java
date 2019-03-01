@@ -118,7 +118,7 @@ class Decision implements Serializable {
 
 }
 
-class Answer {
+class Answer implements Serializable {
     private String answerText;
     private int cost;
 
