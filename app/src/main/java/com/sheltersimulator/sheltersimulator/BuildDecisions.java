@@ -2,6 +2,7 @@ package com.sheltersimulator.sheltersimulator;
 
 import android.app.Application;
 import android.content.Context;
+import android.util.Log;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -25,6 +26,7 @@ public class BuildDecisions extends Application {
         JSONArray obj = loadJSONFromAsset(ctx);
         if(obj!= null){
             allDecisions = readJsonArray(obj);
+            Log.i("Data","size of array list: "+allDecisions.size());
         }
 
     }
