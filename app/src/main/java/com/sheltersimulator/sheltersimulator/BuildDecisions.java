@@ -1,24 +1,80 @@
 package com.sheltersimulator.sheltersimulator;
 
 import android.app.Application;
+import android.content.Context;
 
-import java.lang.reflect.Array;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
-import java.util.Arrays;
 
 
-public class BuildDecisions {
+public class BuildDecisions extends Application {
+    Context ctx;
+    private ArrayList<Decision> allDecisions;
 
-    private int[] range = new int[2];
-    private ArrayList<Decision> preReq;
-    private ArrayList<Answer> answers;
+    @Override
+    public void onCreate() {
+        super.onCreate();
+        ctx = this;
 
-    public BuildDecisions(int[] range, ArrayList<Decision> preReq, ArrayList<Answer> answers){
-        range = this.range;
-        preReq = this.preReq;
-//        answers = new ArrayList<Answer>(Arrays.asList(new Answer("buy more food", 50), new Answer("do nothing", 0)));
-        answers = this.answers;
-        Decision test = new Decision("You don't have any food, would you like to go buy some?", preReq, range, false, answers);
+        JSONArray obj = loadJSONFromAsset(ctx);
+        allDecisions = readJsonArray(obj);
+
+    }
+
+    public ArrayList<Decision> getAllDecisions() {
+        return allDecisions;
+    }
+
+    private ArrayList<Decision> readJsonArray(JSONArray obj) {
+        ArrayList<Decision> allDecisions = null;
+        try {
+            for (int i = 0; i < obj.length(); i++) {
+                JSONObject currDecision = obj.getJSONObject(i);
+
+                JSONArray rangeJSON = currDecision.getJSONArray("Range");
+                int[] range = new int[]{rangeJSON.getInt(0), rangeJSON.getInt(0)};
+
+                JSONArray answersJSON = currDecision.getJSONArray("Answers");
+                ArrayList<Answer> answers = new ArrayList<Answer>();
+                for (int j = 0; j < answersJSON.length(); j++) {
+                    JSONObject currAnswer = answersJSON.getJSONObject(i);
+                    Answer ans = new Answer(currAnswer.getString("option"), currAnswer.getInt("cost"));
+                    answers.add(ans);
+                }
+                Decision decision = new Decision(currDecision.getString("Decision"), currDecision.getString("Tyoe"),
+                        range, currDecision.getBoolean("visited"), answers);
+                allDecisions.add(decision);
+            }
+        } catch (JSONException je) {
+            je.printStackTrace();
+            return null;
+        }
+        return allDecisions;
+    }
+
+    private JSONArray loadJSONFromAsset(Context context) {
+        JSONArray obj;
+        try {
+            InputStream is = context.getAssets().open("data.json");
+            int size = is.available();
+            byte[] buffer = new byte[size];
+            is.read(buffer);
+            is.close();
+//            json = new String(buffer, "UTF-8");
+            obj = new JSONArray(new String(buffer, "UTF-8"));
+        } catch (IOException ex) {
+            ex.printStackTrace();
+            return null;
+        } catch (JSONException je) {
+            je.printStackTrace();
+            return null;
+        }
+        return obj;
     }
 }
 
@@ -26,35 +82,39 @@ public class BuildDecisions {
 class Decision {
 
     private String question;
-    private ArrayList<Decision> preReq;
+    private String type;
     private int[] range;
     private boolean visited;
     private ArrayList<Answer> answers;
 
-    public Decision(String question,ArrayList<Decision> preReq,int[] range,boolean visited,ArrayList<Answer> answers  ){
-        question = this.question;
-        preReq = this.preReq;
-        range = this.range;
-        visited = this.visited;
-        answers = this.answers;
+    public Decision(String question, String type, int[] range, boolean visited, ArrayList<Answer> answers) {
+        this.question = question;
+        this.type = type;
+        this.range = range;
+        this.visited = visited;
+        this.answers = answers;
     }
 
 
-    public String getQuestion(){
+    public String getQuestion() {
         return question;
     }
 
-    public ArrayList<Decision> getPreReq(){
-        return preReq;
+    public String getType() {
+        return type;
     }
 
-    public int[] getRange(){
+    public int[] getRange() {
         return range;
     }
 
-    public boolean getVisited() {return visited;}
+    public boolean getVisited() {
+        return visited;
+    }
 
-    public ArrayList<Answer> getAnswers() {return answers;}
+    public ArrayList<Answer> getAnswers() {
+        return answers;
+    }
 
 }
 
@@ -62,15 +122,16 @@ class Answer {
     private String answerText;
     private int cost;
 
-    public Answer(String answerText, int cost){
-        answerText = this.answerText;
-        cost = this.cost;
+    public Answer(String answerText, int cost) {
+        this.answerText = answerText;
+        this.cost = cost;
     }
-    public String getAnswerText(){
+
+    public String getAnswerText() {
         return answerText;
     }
 
-    public int getCost(){
+    public int getCost() {
         return cost;
     }
 

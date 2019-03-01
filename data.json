@@ -1,84 +1,75 @@
 [
   {
-    "question_1": {
-      "Prerequisites": [],
-      "Range": [
-        1,
-        5
-      ],
-      "Question": "Buy food for people in th shelter",
-      "Visited": false,
-      "Answers": [
-        {
-          "answer1": "yes",
-          "cost": 50
-        },
-        {
-          "answer2": "no",
-          "cost": 0
-        }
-      ]
-    },
-    "question_2": {
-      "Prerequisites": [
-        "question_1"
-      ],
-      "Range": [
-        5,
-        20
-      ],
-      "Question": "question",
-      "Visited": false,
-      "Answers": [
-        {
-          "answer1": "answer",
-          "cost": 30
-        },
-        {
-          "answer2": "answer",
-          "cost": 25
-        },
-        {
-          "answer3": "answer",
-          "cost": 10
-        },
-        {
-          "answer4": "answer",
-          "cost": 5
-        }
-      ]
-    },
-    "question_3": {
-      "Prerequisites": [
-        "question_1",
-        "question_2"
-      ],
-      "Range": [
-        20,
-        100
-      ],
-      "Question": "question",
-      "Visited": false,
-      "Answers": [
-        {
-          "answer1": "answer",
-          "cost": 35
-        },
-        {
-          "answer2": "answer",
-          "cost": 20
-        },
-        {
-          "answer3": "answer",
-          "cost": 5
-        },
-        {
-          "answer4": "answer",
-          "cost": 15
-        }
-      ]
-    }
+    "Decision": "add decision to make here:",
+    "Type":"budget",
+    "Range": [
+      1,
+      5
+    ],
+    "Visited": false,
+    "Answers": [
+      {
+        "option": "yes",
+        "cost": 50
+      },
+      {
+        "option": "no",
+        "cost": 0
+      }
+    ]
+  },
+  {
+    "Decision": "THis is the second decision you have to make:",
+    "Type":"budget",
+    "Range": [
+      5,
+      20
+    ],
+    "Visited": false,
+    "Answers": [
+      {
+        "option": "answer",
+        "cost": 30
+      },
+      {
+        "option": "answer",
+        "cost": 25
+      },
+      {
+        "option": "answer",
+        "cost": 10
+      },
+      {
+        "option": "answer",
+        "cost": 5
+      }
+    ]
+  },
+  {
+    "decision": "THis is the last decision for now!:",
+    "type":"budget",
+    "Range": [
+      5,
+      20
+    ],
+    "Visited": false,
+    "Answers": [
+      {
+        "option": "answer",
+        "cost": 30
+      },
+      {
+        "option": "answer",
+        "cost": 25
+      },
+      {
+        "option": "answer",
+        "cost": 10
+      },
+      {
+        "option": "answer",
+        "cost": 5
+      }
+    ]
   }
 ]
-
-
