@@ -5,10 +5,13 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 
+import org.json.JSONException;
+
 import java.util.ArrayList;
 
 public class GameActivity extends AppCompatActivity implements Card.OnFragmentInteractionListener {
     private Game game;
+    private static final String TAG = GameActivity.class.getName();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,10 +25,17 @@ public class GameActivity extends AppCompatActivity implements Card.OnFragmentIn
         answers.add(new Answer("Decline Offer", 2));
         String q = "A big tech company wants to add a camera to your shelter and use software to track the amount of homeless coming in and out of the shelter. " +
                 "They think this software can help you streamline your system of letting people in. They say they will provide the technology free of cost, and do a trial run.";
-        Decision decision = new Decision(q, "budget", new int[]{1, 5}, false, answers);
+        Decision decision = new Decision(q, "other", new int[]{1, 5}, false, answers);
         getSupportFragmentManager().beginTransaction()
                 .replace(R.id.frame_layout, Card.newInstance(decision))
                 .commit();
+
+        // Loading decisions example
+//        try {
+//            BuildDecisions.getAllDecisions(this);
+//        } catch (JSONException e) {
+//            Log.e(TAG, e.getMessage());
+//        }
     }
 
     @Override

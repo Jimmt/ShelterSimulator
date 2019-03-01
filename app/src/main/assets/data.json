@@ -1,13 +1,13 @@
 [
   {
-    "Decision": "add decision to make here:",
-    "Type":"budget",
-    "Range": [
+    "decision": "add decision to make here:",
+    "type":"budget",
+    "range": [
       1,
       5
     ],
-    "Visited": false,
-    "Answers": [
+    "visited": false,
+    "answers": [
       {
         "option": "yes",
         "cost": 50
@@ -19,14 +19,14 @@
     ]
   },
   {
-    "Decision": "THis is the second decision you have to make:",
-    "Type":"budget",
-    "Range": [
+    "decision": "THis is the second decision you have to make:",
+    "type":"budget",
+    "range": [
       5,
       20
     ],
-    "Visited": false,
-    "Answers": [
+    "visited": false,
+    "answers": [
       {
         "option": "answer",
         "cost": 30
@@ -48,12 +48,12 @@
   {
     "decision": "THis is the last decision for now!:",
     "type":"budget",
-    "Range": [
+    "range": [
       5,
       20
     ],
-    "Visited": false,
-    "Answers": [
+    "visited": false,
+    "answers": [
       {
         "option": "answer",
         "cost": 30
