@@ -2,6 +2,7 @@ package com.sheltersimulator.sheltersimulator;
 
 import android.app.Application;
 
+import java.io.Serializable;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -14,16 +15,16 @@ public class BuildDecisions {
     private ArrayList<Answer> answers;
 
     public BuildDecisions(int[] range, ArrayList<Decision> preReq, ArrayList<Answer> answers){
-        range = this.range;
-        preReq = this.preReq;
+        this.range = range;
+        this.preReq = preReq;
 //        answers = new ArrayList<Answer>(Arrays.asList(new Answer("buy more food", 50), new Answer("do nothing", 0)));
-        answers = this.answers;
+        this.answers = answers;
         Decision test = new Decision("You don't have any food, would you like to go buy some?", preReq, range, false, answers);
     }
 }
 
 
-class Decision {
+class Decision implements Serializable {
 
     private String question;
     private ArrayList<Decision> preReq;
@@ -32,11 +33,11 @@ class Decision {
     private ArrayList<Answer> answers;
 
     public Decision(String question,ArrayList<Decision> preReq,int[] range,boolean visited,ArrayList<Answer> answers  ){
-        question = this.question;
-        preReq = this.preReq;
-        range = this.range;
-        visited = this.visited;
-        answers = this.answers;
+        this.question = question;
+        this.preReq = preReq;
+        this.range = range;
+        this.visited = visited;
+        this.answers = answers;
     }
 
 
