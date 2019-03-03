@@ -1,9 +1,15 @@
 package com.sheltersimulator.sheltersimulator;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.constraint.ConstraintLayout;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
+import android.support.v7.widget.CardView;
+import android.util.AttributeSet;
+import android.util.Xml;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +17,8 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.Space;
 import android.widget.TextView;
+
+import org.xmlpull.v1.XmlPullParser;
 
 import java.util.ArrayList;
 
@@ -57,7 +65,8 @@ public class Card extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_card, container, false);
+        final FragmentActivity fragActivity = this.getActivity();
+        final View view = inflater.inflate(R.layout.fragment_card, container, false);
 
         TextView title = (TextView) view.findViewById(R.id.title);
         TextView description = (TextView) view.findViewById(R.id.description);
@@ -70,7 +79,19 @@ public class Card extends Fragment {
         for(int i = 0; i < decision.getAnswers().size(); i++){
             buttonContainer.addView(makeSpace(1));
 
-            Button btn = makeAnswerButton(decision.getAnswers().get(i).getAnswerText(), 1);
+            Answer answer = decision.getAnswers().get(i);
+            Button btn = makeAnswerButton(answer.getAnswerText(), 1);
+            btn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    CardView card = (CardView) view.findViewById(R.id.card_view);
+                    ConstraintLayout cl = (ConstraintLayout) view.findViewById(R.id.constraint_layout);
+
+                    View cardResult = View.inflate(fragActivity, R.layout.card_result, null);
+                    card.removeAllViews();
+                    card.addView(cardResult);
+                }
+            });
             answerButtons.add(btn);
 
             buttonContainer.addView(btn);
