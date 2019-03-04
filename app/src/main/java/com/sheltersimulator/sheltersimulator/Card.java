@@ -87,9 +87,10 @@ public class Card extends Fragment {
                     CardView card = (CardView) view.findViewById(R.id.card_view);
                     ConstraintLayout cl = (ConstraintLayout) view.findViewById(R.id.constraint_layout);
 
-                    View cardResult = View.inflate(fragActivity, R.layout.card_result, null);
                     card.removeAllViews();
-                    card.addView(cardResult);
+
+                    CardResult cr = new CardResult(fragActivity);
+                    card.addView(cr);
                 }
             });
             answerButtons.add(btn);
