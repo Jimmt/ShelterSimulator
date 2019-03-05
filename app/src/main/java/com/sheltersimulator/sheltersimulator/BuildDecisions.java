@@ -18,9 +18,9 @@ public class BuildDecisions {
     private static final String TAG = BuildDecisions.class.getName();
 
     public static ArrayList<Decision> getAllDecisions(Context ctx) throws JSONException {
-        if(allDecisions == null){
+        if (allDecisions == null) {
             JSONArray obj = loadJSONFromAsset(ctx);
-            if(obj!= null){
+            if (obj != null) {
                 allDecisions = readJsonArray(obj);
                 return allDecisions;
             }
@@ -43,7 +43,9 @@ public class BuildDecisions {
                 ArrayList<Answer> answers = new ArrayList<Answer>();
                 for (int j = 0; j < answersJSON.length(); j++) {
                     JSONObject currAnswer = answersJSON.getJSONObject(i);
-                    Answer ans = new Answer(currAnswer.getString("option"), currAnswer.getInt("cost"));
+                    Answer ans = new Answer(currAnswer.getString("option"),
+                            currAnswer.getString("result_text"),
+                            currAnswer.getInt("cost"));
                     answers.add(ans);
                 }
                 Decision decision = new Decision(currDecision.getString("decision"), currDecision.getString("type"),
@@ -120,12 +122,16 @@ class Decision implements Serializable {
 
 class Answer implements Serializable {
     private String answerText;
+    private String resultText;
     private int cost;
 
-    Answer(String answerText, int cost){
+    Answer(String answerText, String resultText, int cost) {
         this.answerText = answerText;
+        this.resultText = resultText;
         this.cost = cost;
     }
+
+    public String getResultText() { return resultText; }
 
     public String getAnswerText() {
         return answerText;

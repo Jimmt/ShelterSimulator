@@ -79,7 +79,7 @@ public class Card extends Fragment {
         for(int i = 0; i < decision.getAnswers().size(); i++){
             buttonContainer.addView(makeSpace(1));
 
-            Answer answer = decision.getAnswers().get(i);
+            final Answer answer = decision.getAnswers().get(i);
             Button btn = makeAnswerButton(answer.getAnswerText(), 1);
             btn.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -89,7 +89,7 @@ public class Card extends Fragment {
 
                     card.removeAllViews();
 
-                    CardResult cr = new CardResult(fragActivity);
+                    CardResult cr = new CardResult(answer, fragActivity);
                     card.addView(cr);
                 }
             });

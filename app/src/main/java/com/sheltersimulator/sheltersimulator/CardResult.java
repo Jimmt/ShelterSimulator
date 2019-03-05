@@ -6,11 +6,11 @@ import android.widget.FrameLayout;
 
 /**
  * A simple container for the card_result XML layout file. FrameLayout is used because it's designed
- * for holding one item. 
+ * for holding one item.
  */
 public class CardResult extends FrameLayout {
 
-    public CardResult(Context context) {
+    public CardResult(Answer answer, Context context) {
         super(context);
 
         FrameLayout.LayoutParams lp = new FrameLayout.LayoutParams(FrameLayout.LayoutParams.WRAP_CONTENT,
@@ -18,5 +18,6 @@ public class CardResult extends FrameLayout {
         setLayoutParams(lp);
 
         View result = View.inflate(this.getContext(), R.layout.card_result, this);
+        System.out.println(answer.getResultText());
     }
 }

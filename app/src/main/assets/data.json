@@ -10,10 +10,12 @@
     "answers": [
       {
         "option": "yes",
+		"result_text": "result 1",
         "cost": 50
       },
       {
         "option": "no",
+		"result_text": "result 2",
         "cost": 0
       }
     ]
@@ -29,18 +31,22 @@
     "answers": [
       {
         "option": "answer",
+		"result_text": "result 1",
         "cost": 30
       },
       {
         "option": "answer",
+		"result_text": "result 2",
         "cost": 25
       },
       {
         "option": "answer",
+		"result_text": "result 3",
         "cost": 10
       },
       {
         "option": "answer",
+		"result_text": "result 4",
         "cost": 5
       }
     ]
@@ -56,18 +62,22 @@
     "answers": [
       {
         "option": "answer",
+		"result_text": "result 1",
         "cost": 30
       },
       {
         "option": "answer",
+		"result_text": "result 2",
         "cost": 25
       },
       {
         "option": "answer",
+		"result_text": "result 3",
         "cost": 10
       },
       {
         "option": "answer",
+		"result_text": "result 4",
         "cost": 5
       }
     ]
