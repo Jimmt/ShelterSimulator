@@ -30,22 +30,22 @@
     "visited": false,
     "answers": [
       {
-        "option": "answer",
+        "option": "answer 1",
 		"result_text": "result 1",
         "cost": 30
       },
       {
-        "option": "answer",
+        "option": "answer 2",
 		"result_text": "result 2",
         "cost": 25
       },
       {
-        "option": "answer",
+        "option": "answer 3",
 		"result_text": "result 3",
         "cost": 10
       },
       {
-        "option": "answer",
+        "option": "answer 4",
 		"result_text": "result 4",
         "cost": 5
       }
@@ -61,22 +61,22 @@
     "visited": false,
     "answers": [
       {
-        "option": "answer",
+        "option": "answer 1",
 		"result_text": "result 1",
         "cost": 30
       },
       {
-        "option": "answer",
+        "option": "answer 2",
 		"result_text": "result 2",
         "cost": 25
       },
       {
-        "option": "answer",
+        "option": "answer 3",
 		"result_text": "result 3",
         "cost": 10
       },
       {
-        "option": "answer",
+        "option": "answer 4",
 		"result_text": "result 4",
         "cost": 5
       }

@@ -40,9 +40,9 @@ public class BuildDecisions {
                 int[] range = new int[]{rangeJSON.getInt(0), rangeJSON.getInt(0)};
 
                 JSONArray answersJSON = currDecision.getJSONArray("answers");
-                ArrayList<Answer> answers = new ArrayList<Answer>();
+                ArrayList<Answer> answers = new ArrayList<>();
                 for (int j = 0; j < answersJSON.length(); j++) {
-                    JSONObject currAnswer = answersJSON.getJSONObject(i);
+                    JSONObject currAnswer = answersJSON.getJSONObject(j);
                     Answer ans = new Answer(currAnswer.getString("option"),
                             currAnswer.getString("result_text"),
                             currAnswer.getInt("cost"));
