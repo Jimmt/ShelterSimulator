@@ -15,7 +15,7 @@ import org.json.JSONException;
 
 import java.util.ArrayList;
 
-public class GameActivity extends AppCompatActivity implements Card.OnFragmentInteractionListener {
+public class GameActivity extends AppCompatActivity implements Card.OnCardCompleteListener {
     private Game game;
     private static final String TAG = GameActivity.class.getName();
     private ArrayList<Card> cards;
@@ -68,7 +68,7 @@ public class GameActivity extends AppCompatActivity implements Card.OnFragmentIn
     }
 
     @Override
-    public void onFragmentInteraction(Uri uri) {
+    public void onCardComplete() {
 
     }
 }

@@ -18,6 +18,5 @@ public class CardResult extends FrameLayout {
         setLayoutParams(lp);
 
         View result = View.inflate(this.getContext(), R.layout.card_result, this);
-        System.out.println(answer.getResultText());
     }
 }
