@@ -80,6 +80,7 @@ public class Card extends Fragment {
             buttonContainer.addView(makeSpace(1));
 
             final Answer answer = decision.getAnswers().get(i);
+
             Button btn = makeAnswerButton(answer.getAnswerText(), 1);
             btn.setOnClickListener(new View.OnClickListener() {
                 @Override
