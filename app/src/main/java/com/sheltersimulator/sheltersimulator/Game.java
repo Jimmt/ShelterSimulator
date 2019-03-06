@@ -1,10 +1,7 @@
 package com.sheltersimulator.sheltersimulator;
 
-import android.util.Log;
-
-import org.json.JSONException;
-
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Random;
 
 public class Game {
@@ -14,7 +11,7 @@ public class Game {
     private int costs;
     private int week;
 
-    public Game(ArrayList<Decision> allDecisions){
+    public Game(ArrayList<Decision> allDecisions) {
         this.allDecisions = allDecisions;
         random = new Random();
         funds = 1000;
@@ -22,18 +19,29 @@ public class Game {
         week = 1;
     }
 
-    public ArrayList<Decision> pickDecisions(){
+    public ArrayList<Decision> pickDecisions() {
         int numDecisions = random.nextInt(3) + 1;
-
-        ArrayList<Decision> result = new ArrayList<>();
-        for(int i = 0; i < numDecisions; i++) {
-            result.add(sampleDecision());
-        }
-        return result;
+        return sampleDecisions(numDecisions);
     }
 
-    private Decision sampleDecision(){
-        return allDecisions.get(random.nextInt(allDecisions.size()));
+    /**
+     * Sample n decisions, without repeats, from the set of all decisions.
+     * TODO: restrict the set of decisions
+     */
+    private ArrayList<Decision> sampleDecisions(int n) {
+        ArrayList<Integer> indices = new ArrayList<>();
+        // Build a list 0, 1, 2, 3...
+        for (int i = 0; i < allDecisions.size(); i++) {
+            indices.add(i);
+        }
+        // Shuffle the indices into random order
+        Collections.shuffle(indices);
+
+        ArrayList<Decision> result = new ArrayList<>();
+        for (int i = 0; i < n; i++) {
+            result.add(allDecisions.get(i));
+        }
+        return result;
     }
 
     public void runWeek() {
@@ -42,15 +50,15 @@ public class Game {
         week++;
     }
 
-    public int getFunds(){
+    public int getFunds() {
         return funds;
     }
 
-    public int getWeek(){
+    public int getWeek() {
         return week;
     }
 
-    public int getCosts(){
+    public int getCosts() {
         return costs;
     }
 }
