@@ -1,7 +1,7 @@
 [
   {
     "decision": "Someone cuts the line to receive food served from the shelter. Another person behind them is anxious, agitated and frustrated. A physical fight ensues, what do you do?",
-    "type":"budget",
+    "type": "budget",
     "range": [
       1,
       5
@@ -10,19 +10,19 @@
     "answers": [
       {
         "option": "You let the fight continue",
-		"result_text": "The person who cut the line sustains minor cuts and bruises and requires medical attention from the shelter.",
+        "result_text": "The person who cut the line sustains minor cuts and bruises and requires medical attention from the shelter.",
         "cost": -10
       },
       {
         "option": "You break up the fight",
-		"result_text": "You successfully break up the fight and escape with no injuries though you took a huge personal risk trying to mitigate it.",
+        "result_text": "You successfully break up the fight and escape with no injuries though you took a huge personal risk trying to mitigate it.",
         "cost": 0
       }
     ]
   },
   {
     "decision": "You realize that the food served at shelters does not meet the daily nutritional requirements. Will you fix this?",
-    "type":"budget",
+    "type": "budget",
     "range": [
       5,
       20
@@ -31,19 +31,19 @@
     "answers": [
       {
         "option": "No, continue serving malnutritious meals",
-		"result_text": "People argue over lack of milk and water, and the shelter takes emergency measures to purchase stock amounts to satisfy needs. Lack of fixing this could lead to further problems in the future.",
+        "result_text": "People argue over lack of milk and water, and the shelter takes emergency measures to purchase stock amounts to satisfy needs. Lack of fixing this could lead to further problems in the future.",
         "cost": -100
       },
       {
         "option": "Yes, increase the servings of grain, fruit, and vegetable products.",
-		"result_text": "People now have sufficient nutrition in meals.",
+        "result_text": "People now have sufficient nutrition in meals.",
         "cost": -500
       }
     ]
   },
   {
     "decision": "People need to leave the shelter at 7 AM, thus they need to get up earlier to get ready. There have been reports of sleep deprivation and these individuals are finding it hard to find a job and get out of homelessness.",
-    "type":"other",
+    "type": "other",
     "range": [
       5,
       20
@@ -52,13 +52,81 @@
     "answers": [
       {
         "option": "Change curfew to 10 PM so folks can go to bed earlier",
-		"result_text": "Trust in your shelter goes down and enforcing tough curfews make people uncomfortable and lose faith in your establishment",
+        "result_text": "Trust in your shelter goes down and enforcing tough curfews make people uncomfortable and lose faith in your establishment",
         "cost": 0
       },
       {
         "option": "Move the morning wake up time by an hour",
-		"result_text": "If shelter is in a church, you can’t move up the waking time becasue of limitations imposed by the Church.",
+        "result_text": "If shelter is in a church, you can’t move up the waking time becasue of limitations imposed by the Church.",
         "cost": 0
+      }
+    ]
+  },
+  {
+    "decision": "It’s a freezing night with temperatures below freezing. A man at your shelter has just been assigned to a bed, but you notice that he’s coughing a lot. Later, you overhear him say to his friend that he suspects he has bronchitis. What do you do?",
+    "type": "",
+    "range": [
+      1,
+      5
+    ],
+    "visited": false,
+    "answers": [
+      {
+        "option": "Ask the man to leave",
+        "result_text": "Luckily, the man was able to find another shelter for the night. However, he tells people in the community that your shelter refused to take him in on a freezing night. Your shelter's reputation suffers from this incident.",
+        "cost": 0
+      },
+      {
+        "option": "Let the man stay in overnight",
+        "result_text": "Days later, you and a few others at the shelter all start coughing. You visit the doctor and found out that you have contracted bronchitis.",
+        "cost": 0
+      }
+    ]
+  },
+  {
+    "decision": "A volunteer got into a heated argument with a homeless man at your shelter. They both said it was the other person’s fault and you don’t know who’s telling the truth. What do you do?",
+    "type": "",
+    "range": [
+      1,
+      5
+    ],
+    "visited": false,
+    "answers": [
+      {
+        "option": "Ask the man to leave",
+        "result_text": "The man tells people in the community that your shelter has horrible volunteers. Your shelter's reputation suffers from this incident.",
+        "cost": 0
+      },
+      {
+        "option": "Ban the volunteer from volunteering for 3 months",
+        "result_text": "Your shelter relies heavily on volunteers, and you were not able to find a replacement in short notice. You end up working extra hours to cover for that volunteer's shift yourself.",
+        "cost": 0
+      },
+      {
+        "option": "Do nothing and hope they don’t get into other arguments in the future",
+        "result_text": "A week later, the two got into a physical fight at your shelter. A police officer had to be called to break up the fight. You permanently ban the volunteer from your shelter, but was not able to find a replacement in short notice and end up working extra hours to cover for that volunteer's shift yourself.",
+        "cost": 0
+      }
+    ]
+  },
+  {
+    "decision": "A woman that stayed overnight at your shelter accuses your place of bedbugs and lice. What do you do?",
+    "type": "",
+    "range": [
+      1,
+      5
+    ],
+    "visited": false,
+    "answers": [
+      {
+        "option": "Ignore it",
+        "result_text": "It turns out there was lice in your shelter, and you end up getting lice yourself. Additionally, the woman tells people in the community about how unsanitary your shelter is and your reputation suffers from this incident.",
+        "cost": 0
+      },
+      {
+        "option": "Hire a pest control professional and cleaning service",
+        "result_text": "Your shelter is now much more sanitary!",
+        "cost": -500
       }
     ]
   }

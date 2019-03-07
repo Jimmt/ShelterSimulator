@@ -16,7 +16,7 @@ public class Game {
         random = new Random();
         funds = 1000;
         costs = 0;
-        week = 1;
+        week = 0;
     }
 
     public ArrayList<Decision> pickDecisions() {
