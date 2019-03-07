@@ -45,7 +45,8 @@ public class BuildDecisions {
                     JSONObject currAnswer = answersJSON.getJSONObject(j);
                     Answer ans = new Answer(currAnswer.getString("option"),
                             currAnswer.getString("result_text"),
-                            currAnswer.getInt("cost"));
+                            currAnswer.getInt("cost"),
+                            currAnswer.getInt("reputation_cost"));
                     answers.add(ans);
                 }
                 Decision decision = new Decision(currDecision.getString("decision"), currDecision.getString("type"),
@@ -70,10 +71,10 @@ public class BuildDecisions {
 //            json = new String(buffer, "UTF-8");
             obj = new JSONArray(new String(buffer, "UTF-8"));
         } catch (IOException ex) {
-            ex.printStackTrace();
+            Log.e(TAG, ex.getMessage());
             return null;
         } catch (JSONException je) {
-            je.printStackTrace();
+            Log.e(TAG, je.getMessage());
             return null;
         }
         return obj;
@@ -124,11 +125,13 @@ class Answer implements Serializable {
     private String answerText;
     private String resultText;
     private int cost;
+    private int reputationCost;
 
-    Answer(String answerText, String resultText, int cost) {
+    Answer(String answerText, String resultText, int cost, int reputationCost) {
         this.answerText = answerText;
         this.resultText = resultText;
         this.cost = cost;
+        this.reputationCost = reputationCost;
     }
 
     public String getResultText() { return resultText; }
@@ -140,5 +143,7 @@ class Answer implements Serializable {
     public int getCost() {
         return cost;
     }
+
+    public int getReputationCost() { return reputationCost; }
 
 }

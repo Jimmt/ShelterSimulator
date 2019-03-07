@@ -54,6 +54,8 @@ public class GameActivity extends AppCompatActivity implements Card.OnCardComple
         weekText.setText("Week " + game.getWeek());
         TextView fundsText = findViewById(R.id.funds_text);
         fundsText.setText("Funds: " + game.getFunds());
+        TextView reputationText = findViewById(R.id.reputation_text);
+        reputationText.setText("Reputation: " + game.getReputation());
     }
 
     private void addCards() {

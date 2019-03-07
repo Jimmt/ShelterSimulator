@@ -24,13 +24,14 @@ public class Game {
     }
 
     public ArrayList<Decision> pickDecisions() {
-        int numDecisions = random.nextInt(3) + 1;
+        int numDecisions = random.nextInt(2) + 1;
         return sampleDecisions(numDecisions);
     }
 
     public void registerAnswer(Answer answer){
         userAnswers.add(answer);
         funds += answer.getCost();
+        reputation += answer.getReputationCost();
     }
 
     /**
@@ -69,5 +70,9 @@ public class Game {
 
     public int getCosts() {
         return costs;
+    }
+
+    public int getReputation(){
+        return reputation;
     }
 }
