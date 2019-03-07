@@ -1,9 +1,15 @@
 package com.sheltersimulator.sheltersimulator;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.constraint.ConstraintLayout;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
+import android.support.v7.widget.CardView;
+import android.util.AttributeSet;
+import android.util.Xml;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +17,8 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.Space;
 import android.widget.TextView;
+
+import org.xmlpull.v1.XmlPullParser;
 
 import java.util.ArrayList;
 
@@ -31,7 +39,7 @@ public class Card extends Fragment {
     // TODO: Rename and change types of parameters
     private Decision decision;
 
-    private OnFragmentInteractionListener mListener;
+    private OnCardCompleteListener mListener;
 
     public Card() {
         // Required empty public constructor
@@ -57,27 +65,34 @@ public class Card extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_card, container, false);
+        final View view = inflater.inflate(R.layout.fragment_card, container, false);
 
         TextView title = (TextView) view.findViewById(R.id.title);
         TextView description = (TextView) view.findViewById(R.id.description);
-        LinearLayout buttonContainer = (LinearLayout) view.findViewById(R.id.button_container);
 
         title.setText("Decision");
         description.setText(decision.getQuestion());
 
+        addAnswerButtons(getActivity(), view);
+
+        return view;
+    }
+
+    private void addAnswerButtons(final Context context, View view){
+        LinearLayout buttonContainer = (LinearLayout) view.findViewById(R.id.button_container);
         ArrayList<Button> answerButtons = new ArrayList<>();
         for(int i = 0; i < decision.getAnswers().size(); i++){
             buttonContainer.addView(makeSpace(1));
 
-            Button btn = makeAnswerButton(decision.getAnswers().get(i).getAnswerText(), 1);
+            final Answer answer = decision.getAnswers().get(i);
+
+            Button btn = makeAnswerButton(answer.getAnswerText(), 1);
+            btn.setOnClickListener(new AnswerClickListener(mListener, view, answer));
             answerButtons.add(btn);
 
             buttonContainer.addView(btn);
         }
         buttonContainer.addView(makeSpace(1));
-
-        return view;
     }
 
     private Button makeAnswerButton(String text, int weight){
@@ -102,7 +117,7 @@ public class Card extends Fragment {
     // TODO: Rename method, update argument and hook method into UI event
     public void onButtonPressed(Uri uri) {
         if (mListener != null) {
-            mListener.onFragmentInteraction(uri);
+            mListener.onCardComplete();
         }
     }
 
@@ -114,11 +129,11 @@ public class Card extends Fragment {
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        if (context instanceof OnFragmentInteractionListener) {
-            mListener = (OnFragmentInteractionListener) context;
+        if (context instanceof OnCardCompleteListener) {
+            mListener = (OnCardCompleteListener) context;
         } else {
             throw new RuntimeException(context.toString()
-                    + " must implement OnFragmentInteractionListener");
+                    + " must implement OnCardCompleteListener");
         }
     }
 
@@ -128,18 +143,7 @@ public class Card extends Fragment {
         mListener = null;
     }
 
-    /**
-     * This interface must be implemented by activities that contain this
-     * fragment to allow an interaction in this fragment to be communicated
-     * to the activity and potentially other fragments contained in that
-     * activity.
-     * <p>
-     * See the Android Training lesson <a href=
-     * "http://developer.android.com/training/basics/fragments/communicating.html"
-     * >Communicating with Other Fragments</a> for more information.
-     */
-    public interface OnFragmentInteractionListener {
-        // TODO: Update argument type and name
-        void onFragmentInteraction(Uri uri);
+        public interface OnCardCompleteListener {
+        void onCardComplete();
     }
 }

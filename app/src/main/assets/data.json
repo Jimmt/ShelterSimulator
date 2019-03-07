@@ -1,6 +1,6 @@
 [
   {
-    "decision": "add decision to make here:",
+    "decision": "Someone cuts the line to receive food served from the shelter. Another person behind them is anxious, agitated and frustrated. A physical fight ensues, what do you do?",
     "type":"budget",
     "range": [
       1,
@@ -9,17 +9,19 @@
     "visited": false,
     "answers": [
       {
-        "option": "yes",
-        "cost": 50
+        "option": "You let the fight continue",
+		"result_text": "The person who cut the line sustains minor cuts and bruises and requires medical attention from the shelter.",
+        "cost": -10
       },
       {
-        "option": "no",
+        "option": "You break up the fight",
+		"result_text": "You successfully break up the fight and escape with no injuries though you took a huge personal risk trying to mitigate it.",
         "cost": 0
       }
     ]
   },
   {
-    "decision": "THis is the second decision you have to make:",
+    "decision": "You realize that the food served at shelters does not meet the daily nutritional requirements. Will you fix this?",
     "type":"budget",
     "range": [
       5,
@@ -28,26 +30,20 @@
     "visited": false,
     "answers": [
       {
-        "option": "answer",
-        "cost": 30
+        "option": "No, continue serving malnutritious meals",
+		"result_text": "People argue over lack of milk and water, and the shelter takes emergency measures to purchase stock amounts to satisfy needs. Lack of fixing this could lead to further problems in the future.",
+        "cost": -100
       },
       {
-        "option": "answer",
-        "cost": 25
-      },
-      {
-        "option": "answer",
-        "cost": 10
-      },
-      {
-        "option": "answer",
-        "cost": 5
+        "option": "Yes, increase the servings of grain, fruit, and vegetable products.",
+		"result_text": "People now have sufficient nutrition in meals.",
+        "cost": -500
       }
     ]
   },
   {
-    "decision": "THis is the last decision for now!:",
-    "type":"budget",
+    "decision": "People need to leave the shelter at 7 AM, thus they need to get up earlier to get ready. There have been reports of sleep deprivation and these individuals are finding it hard to find a job and get out of homelessness.",
+    "type":"other",
     "range": [
       5,
       20
@@ -55,20 +51,14 @@
     "visited": false,
     "answers": [
       {
-        "option": "answer",
-        "cost": 30
+        "option": "Change curfew to 10 PM so folks can go to bed earlier",
+		"result_text": "Trust in your shelter goes down and enforcing tough curfews make people uncomfortable and lose faith in your establishment",
+        "cost": 0
       },
       {
-        "option": "answer",
-        "cost": 25
-      },
-      {
-        "option": "answer",
-        "cost": 10
-      },
-      {
-        "option": "answer",
-        "cost": 5
+        "option": "Move the morning wake up time by an hour",
+		"result_text": "If shelter is in a church, you can’t move up the waking time becasue of limitations imposed by the Church.",
+        "cost": 0
       }
     ]
   }
