@@ -6,12 +6,15 @@ import android.view.View;
 
 public class AnswerClickListener implements View.OnClickListener {
     private Card.OnCardCompleteListener mListener;
+    private Decision decision;
     private Answer answer;
     private View cardView;
 
-    public AnswerClickListener(Card.OnCardCompleteListener mListener, View cardView, Answer answer) {
+    public AnswerClickListener(Card.OnCardCompleteListener mListener, View cardView,
+                               Decision decision, Answer answer) {
         this.mListener = mListener;
         this.cardView = cardView;
+        this.decision = decision;
         this.answer = answer;
     }
 
@@ -26,7 +29,7 @@ public class AnswerClickListener implements View.OnClickListener {
         card.addView(cr);
 
         if (mListener != null) {
-            mListener.onCardComplete();
+            mListener.onCardComplete(decision, answer);
         }
     }
 }

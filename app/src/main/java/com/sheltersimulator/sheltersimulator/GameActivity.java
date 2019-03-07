@@ -46,13 +46,14 @@ public class GameActivity extends AppCompatActivity implements Card.OnCardComple
     private void runWeek(){
         game.runWeek();
         addCards();
+        updateGameText();
+    }
 
+    private void updateGameText(){
         TextView weekText = findViewById(R.id.week_text);
         weekText.setText("Week " + game.getWeek());
         TextView fundsText = findViewById(R.id.funds_text);
         fundsText.setText("Funds: " + game.getFunds());
-
-
     }
 
     private void addCards() {
@@ -81,7 +82,8 @@ public class GameActivity extends AppCompatActivity implements Card.OnCardComple
     }
 
     @Override
-    public void onCardComplete() {
-
+    public void onCardComplete(Decision decision, Answer answer) {
+        game.registerAnswer(answer);
+        updateGameText();
     }
 }

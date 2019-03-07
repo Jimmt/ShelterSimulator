@@ -3,6 +3,7 @@ package com.sheltersimulator.sheltersimulator;
 import android.content.Context;
 import android.view.View;
 import android.widget.FrameLayout;
+import android.widget.TextView;
 
 /**
  * A simple container for the card_result XML layout file. FrameLayout is used because it's designed
@@ -18,5 +19,8 @@ public class CardResult extends FrameLayout {
         setLayoutParams(lp);
 
         View result = View.inflate(this.getContext(), R.layout.card_result, this);
+
+        TextView resultText = findViewById(R.id.result_text);
+        resultText.setText(answer.getResultText());
     }
 }

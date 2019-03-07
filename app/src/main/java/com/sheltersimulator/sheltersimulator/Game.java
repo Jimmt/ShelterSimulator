@@ -6,15 +6,19 @@ import java.util.Random;
 
 public class Game {
     private ArrayList<Decision> allDecisions;
+    private ArrayList<Answer> userAnswers;
     private Random random;
     private int funds;
     private int costs;
+    private int reputation;
     private int week;
 
     public Game(ArrayList<Decision> allDecisions) {
         this.allDecisions = allDecisions;
+        userAnswers = new ArrayList<>();
         random = new Random();
         funds = 1000;
+        reputation = 50;
         costs = 0;
         week = 0;
     }
@@ -22,6 +26,11 @@ public class Game {
     public ArrayList<Decision> pickDecisions() {
         int numDecisions = random.nextInt(3) + 1;
         return sampleDecisions(numDecisions);
+    }
+
+    public void registerAnswer(Answer answer){
+        userAnswers.add(answer);
+        funds += answer.getCost();
     }
 
     /**
