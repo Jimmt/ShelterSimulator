@@ -10,6 +10,7 @@ import android.view.Gravity;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import org.json.JSONException;
 
@@ -32,7 +33,7 @@ public class GameActivity extends AppCompatActivity implements Card.OnCardComple
         }
 
         cards = new ArrayList<>();
-        addCards();
+        runWeek();
 
         //        ArrayList<Answer> answers = new ArrayList<>();
         //        answers.add(new Answer("Accept Offer", 1));
@@ -40,6 +41,18 @@ public class GameActivity extends AppCompatActivity implements Card.OnCardComple
         //        String q = "A big tech company wants to add a camera to your shelter and use software to track the amount of homeless coming in and out of the shelter. " +
         //                "They think this software can help you streamline your system of letting people in. They say they will provide the technology free of cost, and do a trial run.";
         //        Decision decision = new Decision(q, "other", new int[]{1, 5}, false, answers);
+    }
+
+    private void runWeek(){
+        game.runWeek();
+        addCards();
+
+        TextView weekText = findViewById(R.id.week_text);
+        weekText.setText("Week " + game.getWeek());
+        TextView fundsText = findViewById(R.id.funds_text);
+        fundsText.setText("Funds: " + game.getFunds());
+
+
     }
 
     private void addCards() {

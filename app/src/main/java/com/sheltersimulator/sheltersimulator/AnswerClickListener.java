@@ -9,7 +9,7 @@ public class AnswerClickListener implements View.OnClickListener {
     private Answer answer;
     private View cardView;
 
-    public AnswerClickListener(Card.OnCardCompleteListener mListener, View cardView, Answer answer){
+    public AnswerClickListener(Card.OnCardCompleteListener mListener, View cardView, Answer answer) {
         this.mListener = mListener;
         this.cardView = cardView;
         this.answer = answer;

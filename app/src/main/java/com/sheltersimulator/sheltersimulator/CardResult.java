@@ -6,7 +6,7 @@ import android.widget.FrameLayout;
 
 /**
  * A simple container for the card_result XML layout file. FrameLayout is used because it's designed
- * for holding one item.
+ * to hold one item.
  */
 public class CardResult extends FrameLayout {
 

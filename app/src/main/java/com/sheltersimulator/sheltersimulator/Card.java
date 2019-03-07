@@ -26,17 +26,15 @@ import java.util.ArrayList;
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {@link Card.OnFragmentInteractionListener} interface
+ * {@link Card.OnCardCompleteListener} interface
  * to handle interaction events.
  * Use the {@link Card#newInstance} factory method to
  * create an instance of this fragment.
  */
 public class Card extends Fragment {
-    // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String DECISION = "arg_decision";
 
-    // TODO: Rename and change types of parameters
     private Decision decision;
 
     private OnCardCompleteListener mListener;
@@ -82,7 +80,7 @@ public class Card extends Fragment {
         LinearLayout buttonContainer = (LinearLayout) view.findViewById(R.id.button_container);
         ArrayList<Button> answerButtons = new ArrayList<>();
         for(int i = 0; i < decision.getAnswers().size(); i++){
-            buttonContainer.addView(makeSpace(1));
+//            buttonContainer.addView(makeSpace(1));
 
             final Answer answer = decision.getAnswers().get(i);
 
@@ -92,7 +90,7 @@ public class Card extends Fragment {
 
             buttonContainer.addView(btn);
         }
-        buttonContainer.addView(makeSpace(1));
+//        buttonContainer.addView(makeSpace(1));
     }
 
     private Button makeAnswerButton(String text, int weight){
