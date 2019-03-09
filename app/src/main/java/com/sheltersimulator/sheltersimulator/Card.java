@@ -134,7 +134,7 @@ public class Card extends Fragment {
         mListener = null;
     }
 
-        public interface OnCardCompleteListener {
+    public interface OnCardCompleteListener {
         void onCardComplete(Decision decision, Answer answer);
     }
 }

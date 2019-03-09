@@ -5,6 +5,8 @@ import android.os.Bundle;
 import android.support.v4.view.ViewCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -13,15 +15,18 @@ import org.json.JSONException;
 
 import java.util.ArrayList;
 
-public class GameActivity extends AppCompatActivity implements Card.OnCardCompleteListener, Game.GameOverListener {
+public class GameActivity extends AppCompatActivity implements Card.OnCardCompleteListener, Game.GameListener {
     private Game game;
     private static final String TAG = GameActivity.class.getName();
     private ArrayList<Card> cards;
+    private LinearLayout cardContainer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
+
+        cardContainer = findViewById(R.id.linear_layout);
 
         try {
             game = new Game(BuildDecisions.getAllDecisions(this), this);
@@ -40,13 +45,13 @@ public class GameActivity extends AppCompatActivity implements Card.OnCardComple
         //        Decision decision = new Decision(q, "other", new int[]{1, 5}, false, answers);
     }
 
-    private void runWeek(){
+    private void runWeek() {
         game.runWeek();
         addCards();
         updateGameText();
     }
 
-    private void updateGameText(){
+    private void updateGameText() {
         TextView weekText = findViewById(R.id.week_text);
         weekText.setText("Week " + game.getWeek());
         TextView fundsText = findViewById(R.id.funds_text);
@@ -56,15 +61,13 @@ public class GameActivity extends AppCompatActivity implements Card.OnCardComple
     }
 
     private void addCards() {
-        ArrayList<Decision> decisions = game.pickDecisions();
+        ArrayList<Decision> decisions = game.getCurrentDecisions();
         for (Decision d : decisions) {
             addCard(Card.newInstance(d));
         }
     }
 
     public void addCard(Card card) {
-        LinearLayout cardContainer = findViewById(R.id.linear_layout);
-
         FrameLayout frameLayout = new FrameLayout(this);
         frameLayout.setId(ViewCompat.generateViewId());
         FrameLayout.LayoutParams lp = new FrameLayout.LayoutParams(FrameLayout.LayoutParams.MATCH_PARENT,
@@ -82,15 +85,32 @@ public class GameActivity extends AppCompatActivity implements Card.OnCardComple
 
     @Override
     public void onCardComplete(Decision decision, Answer answer) {
-        game.registerAnswer(answer);
+        game.registerAnswer(decision, answer);
         updateGameText();
     }
 
     @Override
-    public void onGameOver(Game game) {
+    public void gameOver(Game game) {
         Intent intent = new Intent(GameActivity.this, GameOverActivity.class);
         intent.putExtra("funds", game.getFunds());
         intent.putExtra("reputation", game.getReputation());
         startActivity(intent);
+    }
+
+    @Override
+    public void decisionsDone() {
+        Button nextButton = new Button(this);
+        nextButton.setText("Next Week");
+        cardContainer.addView(nextButton);
+        LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+        nextButton.setLayoutParams(lp);
+
+        nextButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                cardContainer.removeAllViews();
+                runWeek();
+            }
+        });
     }
 }

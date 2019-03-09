@@ -89,6 +89,8 @@ class Decision implements Serializable {
     private int[] range;
     private boolean visited;
     private ArrayList<Answer> answers;
+    // This variable doesn't correspond to the JSON data.
+    private Answer choice;
 
     Decision(String question, String type, int[] range, boolean visited, ArrayList<Answer> answers) {
         this.question = question;
@@ -96,12 +98,20 @@ class Decision implements Serializable {
         this.range = range;
         this.visited = visited;
         this.answers = answers;
+        choice = null;
     }
 
+    // Custom methods
 
-    public String getQuestion() {
-        return question;
-    }
+    public Answer getChoice() { return choice; }
+
+    public void setChoice(Answer choice) { this.choice = choice; }
+
+    public boolean choiceSelected() { return choice != null; }
+
+    // Methods for JSON data
+
+    public String getQuestion() { return question; }
 
     public String getType() {
         return type;
