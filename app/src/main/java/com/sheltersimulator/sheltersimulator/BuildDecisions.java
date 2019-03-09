@@ -50,7 +50,7 @@ public class BuildDecisions {
                     answers.add(ans);
                 }
                 Decision decision = new Decision(currDecision.getString("decision"), currDecision.getString("type"),
-                        range, currDecision.getBoolean("visited"), answers);
+                        range, answers);
                 allDecisions.add(decision);
             }
         } catch (JSONException je) {
@@ -87,16 +87,14 @@ class Decision implements Serializable {
     private String question;
     private String type;
     private int[] range;
-    private boolean visited;
     private ArrayList<Answer> answers;
     // This variable doesn't correspond to the JSON data.
     private Answer choice;
 
-    Decision(String question, String type, int[] range, boolean visited, ArrayList<Answer> answers) {
+    Decision(String question, String type, int[] range, ArrayList<Answer> answers) {
         this.question = question;
         this.type = type;
         this.range = range;
-        this.visited = visited;
         this.answers = answers;
         choice = null;
     }
@@ -119,10 +117,6 @@ class Decision implements Serializable {
 
     public int[] getRange() {
         return range;
-    }
-
-    public boolean getVisited() {
-        return visited;
     }
 
     public ArrayList<Answer> getAnswers() {
