@@ -1,13 +1,10 @@
 package com.sheltersimulator.sheltersimulator;
 
-import android.net.Uri;
+import android.content.Intent;
+import android.os.Bundle;
 import android.support.v4.view.ViewCompat;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
-import android.text.Layout;
 import android.util.Log;
-import android.view.Gravity;
-import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -16,7 +13,7 @@ import org.json.JSONException;
 
 import java.util.ArrayList;
 
-public class GameActivity extends AppCompatActivity implements Card.OnCardCompleteListener {
+public class GameActivity extends AppCompatActivity implements Card.OnCardCompleteListener, Game.GameOverListener {
     private Game game;
     private static final String TAG = GameActivity.class.getName();
     private ArrayList<Card> cards;
@@ -27,7 +24,7 @@ public class GameActivity extends AppCompatActivity implements Card.OnCardComple
         setContentView(R.layout.activity_game);
 
         try {
-            game = new Game(BuildDecisions.getAllDecisions(this));
+            game = new Game(BuildDecisions.getAllDecisions(this), this);
         } catch (JSONException e) {
             Log.e(TAG, e.getMessage());
         }
@@ -87,5 +84,13 @@ public class GameActivity extends AppCompatActivity implements Card.OnCardComple
     public void onCardComplete(Decision decision, Answer answer) {
         game.registerAnswer(answer);
         updateGameText();
+    }
+
+    @Override
+    public void onGameOver(Game game) {
+        Intent intent = new Intent(GameActivity.this, GameOverActivity.class);
+        intent.putExtra("funds", game.getFunds());
+        intent.putExtra("reputation", game.getReputation());
+        startActivity(intent);
     }
 }

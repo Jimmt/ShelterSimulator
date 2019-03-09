@@ -12,7 +12,7 @@
         "option": "You let the fight continue",
         "result_text": "The person who cut the line sustains minor cuts and bruises and requires medical attention from the shelter.",
         "cost": -10,
-		"reputation_cost": 0
+		"reputation_cost": -2
       },
       {
         "option": "You break up the fight",
@@ -139,7 +139,7 @@
         "option": "Hire a pest control professional and cleaning service",
         "result_text": "Your shelter is now much more sanitary!",
         "cost": -500,
-		"reputation_cost": 0
+		"reputation_cost": 5
       }
     ]
   }
