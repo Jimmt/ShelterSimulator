@@ -16,14 +16,14 @@
       },
       {
         "option": "You break up the fight",
-        "result_text": "You successfully break up the fight and escape with no injuries though you took a huge personal risk trying to mitigate it.",
+        "result_text": "You successfully break up the fight and escape with no injuries. However, you took a huge personal risk trying to mitigate it.",
         "cost": 0,
 		"reputation_cost": 0
       }
     ]
   },
   {
-    "decision": "You realize that the food served at shelters does not meet the daily nutritional requirements. Will you fix this?",
+    "decision": "You realize that the food served at shelters does not meet daily nutritional requirements. Will you fix this?",
     "type": "budget",
     "range": [
       5,
@@ -69,7 +69,7 @@
     ]
   },
   {
-    "decision": "It’s a freezing night with temperatures below freezing. A man at your shelter has just been assigned to a bed, but you notice that he’s coughing a lot. Later, you overhear him say to his friend that he suspects he has bronchitis. What do you do?",
+    "decision": "It’s a cold night out with temperatures below freezing. A man at your shelter has just been assigned to a bed, but you notice that he’s coughing a lot. Later, you overhear him tell his friend that he suspects he has bronchitis. What do you do?",
     "type": "reputation",
     "range": [
       1,
@@ -85,7 +85,7 @@
       },
       {
         "option": "Let the man stay in overnight",
-        "result_text": "Days later, you and a few others at the shelter all start coughing. You visit the doctor and found out that you have contracted bronchitis.",
+        "result_text": "Days later, you and a few others at the shelter all start coughing. You visit the doctor and discover that you have contracted bronchitis.",
         "cost": 0,
 		"reputation_cost": 0
       }
@@ -121,7 +121,7 @@
     ]
   },
   {
-    "decision": "A woman that stayed overnight at your shelter accuses your place of bedbugs and lice. What do you do?",
+    "decision": "A woman that stayed overnight at your shelter accuses your place of being infested with bedbugs and lice. What do you do?",
     "type": "budget",
     "range": [
       1,
@@ -131,7 +131,7 @@
     "answers": [
       {
         "option": "Ignore it",
-        "result_text": "It turns out there was lice in your shelter, and you end up getting lice yourself. Additionally, the woman tells people in the community about how unsanitary your shelter is and your reputation suffers from this incident.",
+        "result_text": "It turns out there were lice in your shelter, and you end up getting lice yourself. Additionally, the woman tells people in the community about how unsanitary your shelter is and your reputation suffers from this incident.",
         "cost": 0,
 		"reputation_cost": -10
       },
