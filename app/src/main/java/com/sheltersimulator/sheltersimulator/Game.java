@@ -69,7 +69,9 @@ public class Game {
 
         ArrayList<Decision> result = new ArrayList<>();
         for (int i = 0; i < n; i++) {
-            result.add(allDecisions.get(i));
+            Decision d = allDecisions.get(i);
+            d.setChoice(null);
+            result.add(d);
         }
         return result;
     }
