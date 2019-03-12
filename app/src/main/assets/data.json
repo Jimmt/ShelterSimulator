@@ -1,5 +1,147 @@
 [
   {
+    "decision": "It's time to set up your shelter: How many people would you like to provide bed and food for?",
+    "type": "monthly",
+    "range": [
+      1,
+      5
+    ],
+    "answers": [
+      {
+        "option": "30",
+        "result_text": "Each bed costs $6 every night, the total monthly cost is $5040.",
+        "cost": -5040,
+        "reputation_cost": 0
+      },
+      {
+        "option": "40",
+        "result_text": "Each bed costs $6 every night, the total monthly cost is $6720.",
+        "cost": -6720,
+        "reputation_cost": 0
+      }
+    ]
+  },
+  {
+    "decision": "How do you want to recruit volunteers for your shelter?",
+    "type": "monthly",
+    "range": [
+      1,
+      5
+    ],
+    "answers": [
+      {
+        "option": "Put up flyers nearby",
+        "result_text": "You have 3 new volunteers every month",
+        "cost": -50,
+        "reputation_cost": 3,
+        "volunteer_cost": 3
+      },
+      {
+        "option": "Advertise on the radio and local newspaper",
+        "result_text": "You have 1 new volunteer every month",
+        "cost": -100,
+        "reputation_cost": 3,
+        "volunteer_cost":1
+      },
+      {
+        "option": "Post on social media and on your website",
+        "result_text": "You have 2 volunteers every month",
+        "cost": -10,
+        "reputation_cost": 3,
+        "volunteer_cost":2
+      }
+    ]
+  },
+  {
+    "decision": "A local food bank asks to partner with your shelter and is willing to provide food 4 nights of the week. Do you accept?",
+    "type": "monthly",
+    "range": [
+      1,
+      5
+    ],
+    "answers": [
+      {
+        "option": "Yes",
+        "result_text": "You save $200 because of your partnership",
+        "cost": 200,
+        "reputation_cost": 5
+      },
+      {
+        "option": "No",
+        "result_text": "You lose out on an opportunity to save money, other non profits are hesitant to work with you.",
+        "cost": 0,
+        "reputation_cost": -5
+      }
+    ]
+  },
+  {
+    "decision": "An opportunity to host a fundraiser accepting private donations from people attending the event comes up. Do you accept??",
+    "type": "monthly",
+    "range": [
+      1,
+      5
+    ],
+    "answers": [
+      {
+        "option": "Yes",
+        "result_text": "You successfully raise $500. ",
+        "cost": 500,
+        "reputation_cost": 5
+      },
+      {
+        "option": "No",
+        "result_text": "You lose out on an opportunity to raise money.",
+        "cost": 0,
+        "reputation_cost": -5
+      }
+    ]
+  },
+  {
+    "decision": "Government keeps coming up with bureaucratic excuses to not properly distribute funds. You have only received 5,000 of the promised 10,000 in budget. What do you do?",
+    "type": "",
+    "range": [
+      1,
+      5
+    ],
+    "visited": false,
+    "answers": [
+      {
+        "option": "Keep arguing with government to release funds",
+        "result_text": "This pushes government to release 2500 more dollars, but you still only receive 7,500 of the planned 10,000 monthly budget.",
+        "cost": -2500
+      },
+      {
+        "option": "Don’t argue with government agency related to this issue.",
+        "result_text": "The government doesn’t release budget in time, and you lose 5,000 of your originally planned 10,000 monthly budget",
+        "cost": -5000
+      }
+    ]
+  },
+  {
+    "decision": "One night, a drunk man shows up at your shelter. What do you do?",
+    "type": "budget",
+    "range": [
+      1,
+      5
+    ],
+    "answers": [
+      {
+        "option": "Take him in",
+        "result_text": "While drunk, he vandalizes a portion of your beds, costing you $300 to buy new ones.",
+        "cost": -300,
+        "reputation_cost": 0
+      },
+      {
+        "option": "Refuse to take him in",
+        "result_text": "He gets mad and while drunk, vandalizes your property in the middle of the night. It costs you $800 to fix your broken windows. ",
+        "cost": -800,
+        "reputation_cost": 0
+      }
+    ]
+  },
+
+
+  {
     "decision": "Someone cuts the line to receive food served from the shelter. Another person behind them is anxious, agitated and frustrated. A physical fight ensues, what do you do?",
     "type": "budget",
     "range": [
@@ -32,13 +174,13 @@
       {
         "option": "No, continue serving malnutritious meals",
         "result_text": "People argue over lack of milk and water, and the shelter takes emergency measures to purchase stock amounts to satisfy needs. Lack of fixing this could lead to further problems in the future.",
-        "cost": -100,
+        "cost": -1000,
 		"reputation_cost": -5
       },
       {
         "option": "Yes, increase the servings of grain, fruit, and vegetable products.",
         "result_text": "People now have sufficient nutrition in meals.",
-        "cost": -500,
+        "cost": -2500,
 		"reputation_cost": 0
       }
     ]
@@ -59,9 +201,9 @@
       },
       {
         "option": "Move the morning wake up time by an hour",
-        "result_text": "If shelter is in a church, you can’t move up the waking time becasue of limitations imposed by the Church.",
+        "result_text": "Due to limitations of the space, morning time can't be moved. Folks are still unhappy due to inaction ",
         "cost": 0,
-		"reputation_cost": 0
+		"reputation_cost": -10
       }
     ]
   },
