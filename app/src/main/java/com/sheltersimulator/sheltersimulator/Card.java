@@ -85,7 +85,7 @@ public class Card extends Fragment {
             final Answer answer = decision.getAnswers().get(i);
 
             Button btn = makeAnswerButton(answer.getAnswerText(), 1);
-            btn.setOnClickListener(new AnswerClickListener(mListener, view, answer));
+            btn.setOnClickListener(new AnswerClickListener(mListener, view, decision, answer));
             answerButtons.add(btn);
 
             buttonContainer.addView(btn);
@@ -112,13 +112,6 @@ public class Card extends Fragment {
         return space;
     }
 
-    // TODO: Rename method, update argument and hook method into UI event
-    public void onButtonPressed(Uri uri) {
-        if (mListener != null) {
-            mListener.onCardComplete();
-        }
-    }
-
     @Override
     public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
@@ -141,7 +134,7 @@ public class Card extends Fragment {
         mListener = null;
     }
 
-        public interface OnCardCompleteListener {
-        void onCardComplete();
+    public interface OnCardCompleteListener {
+        void onCardComplete(Decision decision, Answer answer);
     }
 }

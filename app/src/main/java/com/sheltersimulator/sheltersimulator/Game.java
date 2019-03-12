@@ -1,27 +1,57 @@
 package com.sheltersimulator.sheltersimulator;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Random;
 
 public class Game {
     private ArrayList<Decision> allDecisions;
+    private ArrayList<Decision> currentDecisions;
     private Random random;
     private int funds;
     private int costs;
+    private int reputation;
     private int week;
 
-    public Game(ArrayList<Decision> allDecisions) {
+    private GameListener gListener;
+
+    public Game(ArrayList<Decision> allDecisions, GameListener gListener) {
         this.allDecisions = allDecisions;
+        this.gListener = gListener;
+        currentDecisions = new ArrayList<>();
         random = new Random();
         funds = 1000;
+        reputation = 50;
         costs = 0;
         week = 0;
     }
 
-    public ArrayList<Decision> pickDecisions() {
-        int numDecisions = random.nextInt(3) + 1;
-        return sampleDecisions(numDecisions);
+    public ArrayList<Decision> getCurrentDecisions(){
+        return currentDecisions;
+    }
+
+    public void pickDecisions() {
+        int numDecisions = random.nextInt(2) + 1;
+        currentDecisions = sampleDecisions(numDecisions);
+    }
+
+    public void registerAnswer(Decision decision, Answer answer) {
+        decision.setChoice(answer);
+        funds += answer.getCost();
+        reputation += answer.getReputationCost();
+
+        if (funds < 0) {
+            gListener.gameOver(this);
+        }
+
+        for(Decision d: currentDecisions){
+            if(!d.choiceSelected()){
+                return;
+            }
+        }
+        // Only executes if all decisions return true for choiceSelected()
+        gListener.decisionsDone();
     }
 
     /**
@@ -39,7 +69,9 @@ public class Game {
 
         ArrayList<Decision> result = new ArrayList<>();
         for (int i = 0; i < n; i++) {
-            result.add(allDecisions.get(i));
+            Decision d = allDecisions.get(i);
+            d.setChoice(null);
+            result.add(d);
         }
         return result;
     }
@@ -47,7 +79,9 @@ public class Game {
     public void runWeek() {
         //funds += etc
         //funds -= costs
+        currentDecisions.clear();
         week++;
+        pickDecisions();
     }
 
     public int getFunds() {
@@ -60,5 +94,14 @@ public class Game {
 
     public int getCosts() {
         return costs;
+    }
+
+    public int getReputation() {
+        return reputation;
+    }
+
+    public interface GameListener {
+        void gameOver(Game game);
+        void decisionsDone();
     }
 }

@@ -45,11 +45,12 @@ public class BuildDecisions {
                     JSONObject currAnswer = answersJSON.getJSONObject(j);
                     Answer ans = new Answer(currAnswer.getString("option"),
                             currAnswer.getString("result_text"),
-                            currAnswer.getInt("cost"));
+                            currAnswer.getInt("cost"),
+                            currAnswer.getInt("reputation_cost"));
                     answers.add(ans);
                 }
                 Decision decision = new Decision(currDecision.getString("decision"), currDecision.getString("type"),
-                        range, currDecision.getBoolean("visited"), answers);
+                        range, answers);
                 allDecisions.add(decision);
             }
         } catch (JSONException je) {
@@ -70,10 +71,10 @@ public class BuildDecisions {
 //            json = new String(buffer, "UTF-8");
             obj = new JSONArray(new String(buffer, "UTF-8"));
         } catch (IOException ex) {
-            ex.printStackTrace();
+            Log.e(TAG, ex.getMessage());
             return null;
         } catch (JSONException je) {
-            je.printStackTrace();
+            Log.e(TAG, je.getMessage());
             return null;
         }
         return obj;
@@ -86,21 +87,29 @@ class Decision implements Serializable {
     private String question;
     private String type;
     private int[] range;
-    private boolean visited;
     private ArrayList<Answer> answers;
+    // This variable doesn't correspond to the JSON data.
+    private Answer choice;
 
-    Decision(String question, String type, int[] range, boolean visited, ArrayList<Answer> answers) {
+    Decision(String question, String type, int[] range, ArrayList<Answer> answers) {
         this.question = question;
         this.type = type;
         this.range = range;
-        this.visited = visited;
         this.answers = answers;
+        choice = null;
     }
 
+    // Custom methods
 
-    public String getQuestion() {
-        return question;
-    }
+    public Answer getChoice() { return choice; }
+
+    public void setChoice(Answer choice) { this.choice = choice; }
+
+    public boolean choiceSelected() { return choice != null; }
+
+    // Methods for JSON data
+
+    public String getQuestion() { return question; }
 
     public String getType() {
         return type;
@@ -108,10 +117,6 @@ class Decision implements Serializable {
 
     public int[] getRange() {
         return range;
-    }
-
-    public boolean getVisited() {
-        return visited;
     }
 
     public ArrayList<Answer> getAnswers() {
@@ -124,11 +129,13 @@ class Answer implements Serializable {
     private String answerText;
     private String resultText;
     private int cost;
+    private int reputationCost;
 
-    Answer(String answerText, String resultText, int cost) {
+    Answer(String answerText, String resultText, int cost, int reputationCost) {
         this.answerText = answerText;
         this.resultText = resultText;
         this.cost = cost;
+        this.reputationCost = reputationCost;
     }
 
     public String getResultText() { return resultText; }
@@ -140,5 +147,7 @@ class Answer implements Serializable {
     public int getCost() {
         return cost;
     }
+
+    public int getReputationCost() { return reputationCost; }
 
 }
