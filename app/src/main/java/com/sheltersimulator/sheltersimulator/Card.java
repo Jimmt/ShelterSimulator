@@ -70,7 +70,7 @@ public class Card extends Fragment {
 
         title.setText("Decision");
         description.setText(decision.getQuestion());
-        
+
         addAnswerButtons(getActivity(), view);
 
         return view;

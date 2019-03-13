@@ -90,9 +90,8 @@ public class Game {
     public void runWeek() {
         currentDecisions.clear();
 
-        applyIncomeAndCosts();
-
         if (week == 4) {
+            applyIncomeAndCosts();
             week = 1;
             month++;
         } else {
