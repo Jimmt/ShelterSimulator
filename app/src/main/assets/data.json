@@ -2,6 +2,7 @@
   {
     "decision": "It's time to set up your shelter: How many people would you like to provide bed and food for?",
     "type": "monthly",
+	"index": 1,
     "range": [
       1,
       5
@@ -24,6 +25,7 @@
   {
     "decision": "How do you want to recruit volunteers for your shelter?",
     "type": "monthly",
+	"index": 2,
     "range": [
       1,
       5
@@ -55,6 +57,7 @@
   {
     "decision": "A local food bank asks to partner with your shelter and is willing to provide food 4 nights of the week. Do you accept?",
     "type": "monthly",
+	"index": 3,
     "range": [
       1,
       5
