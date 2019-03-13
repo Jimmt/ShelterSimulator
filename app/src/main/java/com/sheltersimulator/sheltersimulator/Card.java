@@ -70,7 +70,7 @@ public class Card extends Fragment {
 
         title.setText("Decision");
         description.setText(decision.getQuestion());
-
+        
         addAnswerButtons(getActivity(), view);
 
         return view;
@@ -98,6 +98,7 @@ public class Card extends Fragment {
         btn.setText(text);
         LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT,
                 LinearLayout.LayoutParams.WRAP_CONTENT);
+        lp.width = 0;
         lp.weight = 1;
         btn.setLayoutParams(lp);
         return btn;
