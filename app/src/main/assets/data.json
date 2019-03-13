@@ -78,8 +78,9 @@
     ]
   },
   {
-    "decision": "An opportunity to host a fundraiser accepting private donations from people attending the event comes up. Do you accept??",
+    "decision": "An opportunity to host a fundraiser accepting private donations from people attending the event comes up. Do you accept?",
     "type": "monthly",
+	"index": 4,
     "range": [
       1,
       5
