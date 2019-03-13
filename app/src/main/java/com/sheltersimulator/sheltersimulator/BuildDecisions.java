@@ -36,6 +36,11 @@ public class BuildDecisions {
             for (int i = 0; i < obj.length(); i++) {
                 JSONObject currDecision = obj.getJSONObject(i);
 
+                // For MVP
+                if(!currDecision.has("index")){
+                    continue;
+                }
+
                 JSONArray rangeJSON = currDecision.getJSONArray("range");
                 int[] range = new int[]{rangeJSON.getInt(0), rangeJSON.getInt(1)};
 
@@ -50,7 +55,7 @@ public class BuildDecisions {
                     answers.add(ans);
                 }
                 Decision decision = new Decision(currDecision.getString("decision"), currDecision.getString("type"),
-                        range, answers);
+                        range, currDecision.getInt("index"), answers);
                 allDecisions.add(decision);
             }
         } catch (JSONException je) {
@@ -82,20 +87,22 @@ public class BuildDecisions {
 }
 
 
-class Decision implements Serializable {
+class Decision implements Serializable, Comparable {
 
     private String question;
     private String type;
     private int[] range;
+    private int index;
     private ArrayList<Answer> answers;
     // This variable doesn't correspond to the JSON data.
     private Answer choice;
 
-    Decision(String question, String type, int[] range, ArrayList<Answer> answers) {
+    Decision(String question, String type, int[] range, int index, ArrayList<Answer> answers) {
         this.question = question;
         this.type = type;
         this.range = range;
         this.answers = answers;
+        this.index = index;
         choice = null;
     }
 
@@ -119,10 +126,16 @@ class Decision implements Serializable {
         return range;
     }
 
+    public int getIndex() { return index; }
+
     public ArrayList<Answer> getAnswers() {
         return answers;
     }
 
+    @Override
+    public int compareTo(Object decision) {
+        return index - ((Decision) decision).getIndex();
+    }
 }
 
 class Answer implements Serializable {

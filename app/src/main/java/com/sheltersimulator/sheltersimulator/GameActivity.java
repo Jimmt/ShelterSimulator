@@ -14,6 +14,7 @@ import android.widget.TextView;
 import org.json.JSONException;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class GameActivity extends AppCompatActivity implements Card.OnCardCompleteListener, Game.GameListener {
     private Game game;
@@ -29,7 +30,9 @@ public class GameActivity extends AppCompatActivity implements Card.OnCardComple
         cardContainer = findViewById(R.id.linear_layout);
 
         try {
-            game = new Game(BuildDecisions.getAllDecisions(this), this);
+            ArrayList<Decision> decisions = BuildDecisions.getAllDecisions(this);
+            Collections.sort(decisions);
+            game = new Game(decisions, this);
         } catch (JSONException e) {
             Log.e(TAG, e.getMessage());
         }
@@ -53,9 +56,15 @@ public class GameActivity extends AppCompatActivity implements Card.OnCardComple
 
     private void updateGameText() {
         TextView weekText = findViewById(R.id.week_text);
-        weekText.setText("Week " + game.getWeek());
+        weekText.setText("Month " + game.getMonth() + " Week " + game.getWeek());
+
         TextView fundsText = findViewById(R.id.funds_text);
-        fundsText.setText("Funds: " + game.getFunds());
+        fundsText.setText("Funds: $" + game.getFunds());
+        TextView incomeText = findViewById(R.id.income_text);
+        incomeText.setText("Monthly Income: $" + game.getRevenue());
+        TextView costsText = findViewById(R.id.costs_text);
+        costsText.setText("Monthly Costs: $" + -game.getCosts());
+
         TextView reputationText = findViewById(R.id.reputation_text);
         reputationText.setText("Reputation: " + game.getReputation());
     }

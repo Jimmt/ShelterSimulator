@@ -1,6 +1,5 @@
 package com.sheltersimulator.sheltersimulator;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Random;
@@ -10,9 +9,13 @@ public class Game {
     private ArrayList<Decision> currentDecisions;
     private Random random;
     private int funds;
+    private int revenue;
     private int costs;
     private int reputation;
+    private int month;
     private int week;
+
+    private int decisionIndex;
 
     private GameListener gListener;
 
@@ -21,32 +24,40 @@ public class Game {
         this.gListener = gListener;
         currentDecisions = new ArrayList<>();
         random = new Random();
-        funds = 1000;
         reputation = 50;
+        revenue = 7000;
         costs = 0;
         week = 0;
+        month = 1;
+        decisionIndex = 0;
+
+        applyIncomeAndCosts();
     }
 
-    public ArrayList<Decision> getCurrentDecisions(){
+    public ArrayList<Decision> getCurrentDecisions() {
         return currentDecisions;
     }
 
     public void pickDecisions() {
-        int numDecisions = random.nextInt(2) + 1;
-        currentDecisions = sampleDecisions(numDecisions);
+        if (decisionIndex <= allDecisions.size() - 1) {
+            currentDecisions.add(allDecisions.get(decisionIndex++));
+        }
+
+//        int numDecisions = random.nextInt(2) + 1;
+//        currentDecisions = sampleDecisions(numDecisions);
     }
 
     public void registerAnswer(Decision decision, Answer answer) {
         decision.setChoice(answer);
-        funds += answer.getCost();
+        costs += answer.getCost();
         reputation += answer.getReputationCost();
 
         if (funds < 0) {
             gListener.gameOver(this);
         }
 
-        for(Decision d: currentDecisions){
-            if(!d.choiceSelected()){
+        for (Decision d : currentDecisions) {
+            if (!d.choiceSelected()) {
                 return;
             }
         }
@@ -77,11 +88,26 @@ public class Game {
     }
 
     public void runWeek() {
-        //funds += etc
-        //funds -= costs
         currentDecisions.clear();
-        week++;
+
+        applyIncomeAndCosts();
+
+        if (week == 4) {
+            week = 1;
+            month++;
+        } else {
+            week++;
+        }
+
         pickDecisions();
+    }
+
+    private void applyIncomeAndCosts() {
+        funds = revenue + costs;
+    }
+
+    public int getRevenue() {
+        return revenue;
     }
 
     public int getFunds() {
@@ -96,12 +122,17 @@ public class Game {
         return costs;
     }
 
+    public int getMonth() {
+        return month;
+    }
+
     public int getReputation() {
         return reputation;
     }
 
     public interface GameListener {
         void gameOver(Game game);
+
         void decisionsDone();
     }
 }
