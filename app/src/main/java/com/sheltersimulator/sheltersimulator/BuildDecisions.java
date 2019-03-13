@@ -45,8 +45,8 @@ public class BuildDecisions {
                     JSONObject currAnswer = answersJSON.getJSONObject(j);
                     Answer ans = new Answer(currAnswer.getString("option"),
                             currAnswer.getString("result_text"),
-                            currAnswer.getInt("cost"),
-                            currAnswer.getInt("reputation_cost"));
+                            currAnswer.has("cost") ? currAnswer.getInt("cost") : 0,
+                            currAnswer.has("reputation_cost") ? currAnswer.getInt("reputation_cost") : 0);
                     answers.add(ans);
                 }
                 Decision decision = new Decision(currDecision.getString("decision"), currDecision.getString("type"),
