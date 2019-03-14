@@ -49,7 +49,12 @@ public class Game {
 
     public void registerAnswer(Decision decision, Answer answer) {
         decision.setChoice(answer);
-        costs += answer.getCost();
+
+        if(decision.getType().equals("monthly")){
+            costs += answer.getCost();
+        } else if(decision.getType().equals("budget")){
+            funds -= answer.getCost();
+        }
         reputation += answer.getReputationCost();
 
         if (funds < 0) {
@@ -102,7 +107,7 @@ public class Game {
     }
 
     private void applyIncomeAndCosts() {
-        funds = revenue + costs;
+        funds += revenue + costs;
     }
 
     public int getRevenue() {

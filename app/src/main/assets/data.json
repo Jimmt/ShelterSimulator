@@ -102,7 +102,8 @@
   },
   {
     "decision": "Government keeps coming up with bureaucratic excuses to not properly distribute funds. You have only received 5,000 of the promised 10,000 in budget. What do you do?",
-    "type": "",
+    "type": "monthly",
+	"index": 7,
     "range": [
       1,
       5
@@ -123,6 +124,7 @@
   },
   {
     "decision": "One night, a drunk man shows up at your shelter. What do you do?",
+	"index": 5,
     "type": "budget",
     "range": [
       1,
@@ -148,6 +150,7 @@
   {
     "decision": "Someone cuts the line to receive food served from the shelter. Another person behind them is anxious, agitated and frustrated. A physical fight ensues, what do you do?",
     "type": "budget",
+	"index": 11,
     "range": [
       1,
       5
@@ -169,7 +172,8 @@
   },
   {
     "decision": "You realize that the food served at shelters does not meet daily nutritional requirements. Will you fix this?",
-    "type": "budget",
+    "type": "monthly",
+	"index": 9,
     "range": [
       5,
       20
@@ -192,6 +196,7 @@
   {
     "decision": "People need to leave the shelter at 7 AM, thus they need to get up earlier to get ready. There have been reports of sleep deprivation and these individuals are finding it hard to find a job and get out of homelessness.",
     "type": "other",
+	"index": 8,
     "range": [
       5,
       20
@@ -214,6 +219,7 @@
   {
     "decision": "It’s a cold night out with temperatures below freezing. A man at your shelter has just been assigned to a bed, but you notice that he’s coughing a lot. Later, you overhear him tell his friend that he suspects he has bronchitis. What do you do?",
     "type": "reputation",
+	"index": 11,
     "range": [
       1,
       5
@@ -236,6 +242,7 @@
   {
     "decision": "A volunteer got into a heated argument with a homeless man at your shelter. They both said it was the other person’s fault and you don’t know who’s telling the truth. What do you do?",
     "type": "reputation",
+	"index": 10,
     "range": [
       1,
       5
@@ -264,6 +271,7 @@
   {
     "decision": "A woman that stayed overnight at your shelter accuses your place of being infested with bedbugs and lice. What do you do?",
     "type": "budget",
+	"index": 6,
     "range": [
       1,
       5

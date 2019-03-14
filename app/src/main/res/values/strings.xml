@@ -1,5 +1,5 @@
 <resources>
     <string name="app_name">Shelter Simulator</string>
     <string name="game_over_text">You ran out of funds. You ended with $%1$d and %2$d reputation.</string>
-    <string name="start_description">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</string>
+    <string name="start_description">You are interested in establishing a homeless shelter. Located in Seattle, Washington, your shelter will be a non profit, privately and publicly funded organization aimed to provide beds and food to homeless people in the surrounding area. It’s time to set up your shelter.</string>
 </resources>
