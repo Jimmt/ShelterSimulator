@@ -50,15 +50,21 @@ public class Game {
     public void registerAnswer(Decision decision, Answer answer) {
         decision.setChoice(answer);
 
-        if(decision.getType().equals("monthly")){
+        if (decision.getType().equals("monthly")) {
             costs += answer.getCost();
-        } else if(decision.getType().equals("budget")){
-            funds -= answer.getCost();
+        } else if (decision.getType().equals("monthly_revenue")) {
+            revenue += answer.getCost();
+        } else if (decision.getType().equals("budget")) {
+            funds += answer.getCost();
         }
         reputation += answer.getReputationCost();
 
         if (funds < 0) {
             gListener.gameOver(this);
+        }
+
+        if (costs > 0){
+            costs = 0;
         }
 
         for (Decision d : currentDecisions) {

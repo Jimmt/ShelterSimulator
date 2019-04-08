@@ -102,7 +102,7 @@
   },
   {
     "decision": "Government keeps coming up with bureaucratic excuses to not properly distribute funds. You have only received 5,000 of the promised 10,000 in budget. What do you do?",
-    "type": "monthly",
+    "type": "monthly_revenue",
 	"index": 7,
     "range": [
       1,
