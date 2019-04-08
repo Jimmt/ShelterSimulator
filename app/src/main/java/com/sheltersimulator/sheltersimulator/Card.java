@@ -76,10 +76,10 @@ public class Card extends Fragment {
         return view;
     }
 
-    private void addAnswerButtons(final Context context, View view){
+    private void addAnswerButtons(final Context context, View view) {
         LinearLayout buttonContainer = (LinearLayout) view.findViewById(R.id.button_container);
         ArrayList<Button> answerButtons = new ArrayList<>();
-        for(int i = 0; i < decision.getAnswers().size(); i++){
+        for (int i = 0; i < decision.getAnswers().size(); i++) {
 //            buttonContainer.addView(makeSpace(1));
 
             final Answer answer = decision.getAnswers().get(i);
@@ -93,18 +93,20 @@ public class Card extends Fragment {
 //        buttonContainer.addView(makeSpace(1));
     }
 
-    private Button makeAnswerButton(String text, int weight){
+    private Button makeAnswerButton(String text, int weight) {
         Button btn = new Button(this.getActivity());
         btn.setText(text);
-        LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT,
+        LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,
                 LinearLayout.LayoutParams.WRAP_CONTENT);
-        lp.width = 0;
-        lp.weight = 1;
+
+        // For horizontal
+//        lp.width = 0;
+//        lp.weight = 1;
         btn.setLayoutParams(lp);
         return btn;
     }
 
-    private Space makeSpace(int weight){
+    private Space makeSpace(int weight) {
         Space space = new Space(this.getActivity());
         LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT,
                 LinearLayout.LayoutParams.WRAP_CONTENT);

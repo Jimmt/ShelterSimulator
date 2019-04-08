@@ -63,7 +63,7 @@
                 android:layout_weight="0"
                 android:gravity="center"
                 android:minHeight="30dp"
-                android:orientation="horizontal"
+                android:orientation="vertical"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent">
