@@ -51,7 +51,8 @@ public class BuildDecisions {
                     Answer ans = new Answer(currAnswer.getString("option"),
                             currAnswer.getString("result_text"),
                             currAnswer.has("cost") ? currAnswer.getInt("cost") : 0,
-                            currAnswer.has("reputation_cost") ? currAnswer.getInt("reputation_cost") : 0);
+                            currAnswer.has("reputation_cost") ? currAnswer.getInt("reputation_cost") : 0,
+                            ""); // TODO: change
                     answers.add(ans);
                 }
                 Decision decision = new Decision(currDecision.getString("decision"), currDecision.getString("type"),
@@ -143,12 +144,14 @@ class Answer implements Serializable {
     private String resultText;
     private int cost;
     private int reputationCost;
+    private String image;
 
-    Answer(String answerText, String resultText, int cost, int reputationCost) {
+    Answer(String answerText, String resultText, int cost, int reputationCost, String image) {
         this.answerText = answerText;
         this.resultText = resultText;
         this.cost = cost;
         this.reputationCost = reputationCost;
+        this.image = image;
     }
 
     public String getResultText() { return resultText; }
@@ -163,4 +166,5 @@ class Answer implements Serializable {
 
     public int getReputationCost() { return reputationCost; }
 
+    public String getImage() { return image; }
 }
